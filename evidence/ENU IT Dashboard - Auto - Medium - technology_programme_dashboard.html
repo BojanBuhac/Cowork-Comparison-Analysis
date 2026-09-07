@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology Programme Status Dashboard — Contoso</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#171e2e; --panel2:#1e2739; --line:#2b3650;
+    --txt:#e8ecf5; --muted:#9aa7c0; --accent:#4c8dff;
+    --green:#3ecf8e; --amber:#f6c344; --red:#ff6b6b; --grey:#7d8aa5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 22px 64px}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
+  .sub{color:var(--muted);font-size:14px}
+  h2{font-size:18px;margin:38px 0 14px;padding-left:10px;border-left:3px solid var(--accent)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h3{margin:0 0 6px;font-size:15px}
+  .rag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:20px;color:#10151f}
+  .r-red{background:var(--red)} .r-amber{background:var(--amber)} .r-green{background:var(--green)} .r-grey{background:var(--grey)}
+  .meta{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+  .meta b{color:var(--txt);font-weight:600}
+  .card p.body{font-size:13.5px;margin:10px 0 0;color:#cfd8ea}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th{background:var(--panel2);text-align:left;padding:11px 12px;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+  td{padding:11px 12px;border-top:1px solid var(--line);vertical-align:top}
+  .timeline{position:relative;margin:8px 0 0;padding-left:26px}
+  .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .ms{position:relative;padding:0 0 18px 8px}
+  .ms:before{content:"";position:absolute;left:-22px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .ms.done:before{background:var(--green)} .ms.late:before{background:var(--red)} .ms.next:before{background:var(--amber)}
+  .ms .d{font-size:12px;color:var(--muted);letter-spacing:.4px}
+  .ms .t{font-size:14px;font-weight:600}
+  .ms .n{font-size:13px;color:#cfd8ea}
+  .sig{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+  .sig h4{margin:0 0 4px;font-size:14px}
+  .sig p{margin:0;font-size:13.5px;color:#cfd8ea}
+  a{color:#7fb0ff}
+  .src{font-size:12px;color:var(--muted);margin-top:8px}
+  .gap{background:#241d17;border:1px solid #4a3a22;border-radius:10px;padding:14px 16px;font-size:13.5px;color:#f0dfc2}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:8px}
+  .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .v{font-size:26px;font-weight:700}
+  .kpi .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Technology Programme — Status Dashboard</h1>
+  <div class="sub">Contoso &middot; Prepared for Corey Gray &middot; Reporting date: 7 September 2026<br>
+  Sources: Outlook mail, Microsoft Teams, SharePoint/OneDrive documents, and public vendor announcements. Every item below is traced to a named source.</div>
+</header>
+
+<section>
+  <h2>Programme at a glance</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">11</div><div class="l">Open tasks</div></div>
+    <div class="kpi"><div class="v" style="color:var(--red)">5</div><div class="l">High priority</div></div>
+    <div class="kpi"><div class="v" style="color:var(--amber)">4</div><div class="l">Medium priority</div></div>
+    <div class="kpi"><div class="v" style="color:var(--red)">3</div><div class="l">Items overdue</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l">Blocked on others</div></div>
+  </div>
+  <p class="src">Counts as reported in the Daily Task Digest of Sunday, 6 September 2026 (11 open: 5 high, 4 medium, 2 low; "No tasks are currently blocked pending input from others"). The digest of Friday, 4 September 2026 reported 9 open items, so scope grew by 2 over the weekend.</p>
+</section>
+
+<section>
+  <h2>Programme health</h2>
+  <div class="cards">
+
+    <div class="card">
+      <span class="rag r-amber">Amber</span>
+      <h3>ERP Cloud Implementation &amp; Integration</h3>
+      <p class="body">Vendor evaluation is complete and a recommendation is on the table: Zava Trading scored 8/10 (&euro;14,500 one-time + &euro;7,150/month, 99.9% standard SLA), ahead of Contoso Supplies Ltd at 7/10 and Fabrikam Manufacturing at 6/10. The brief itself is marked "Complete", but compliance is only <em>Partial</em> — the RFP is compliant while the SOW template is still missing, and no EcoVadis or CreditSafe ratings were found for the vendors.</p>
+      <p class="meta"><b>Owner:</b> Corey Gray (with Executive Sponsor / Procurement Team)<br>
+      <b>Open next steps:</b> budget approval, legal review, contract generation<br>
+      <b>Blocker:</b> SOW template upload and vendor compliance ratings</p>
+      <p class="src">Source: Executive_Procurement_Brief_ERP_Integration_2026 (sections 2–5); supporting set — ERP Cloud Implementation - Main RFP, ERP Cloud Implementation - Statement of Work, ERP Cloud Implementation - Q&amp;A, RFP-2026-001_response3_CloudFirst-ERP.</p>
+    </div>
+
+    <div class="card">
+      <span class="rag r-red">Red</span>
+      <h3>S2P Agent &amp; AI Governance (ZAG)</h3>
+      <p class="body">A status update on the S2P agent has been outstanding since Adil Eli asked "What is the status of S2P agent?" on 22 April 2026 and is still logged as awaiting reply. Jira governance tickets ZAG-1 through ZAG-5 are assigned to Corey Gray, with ZAG-5 ("Draft compliance criteria for agent behavior") reported overdue, and ZAG-6 ("Set Up Agent Registration &amp; Verification") is still unassigned in the ZAVA AI Governance space.</p>
+      <p class="meta"><b>Owner:</b> Corey Gray &middot; <b>Requester:</b> Adil Eli<br>
+      <b>Blocker:</b> No status response issued for 4+ months; ZAG-5 overdue</p>
+      <p class="src">Sources: Daily Task Digest, 6 September 2026 (items 5 and 7); Jira weekly update emails of 26 August and 2 September 2026; governance artefacts — GovernedAI Governance Framework for S2P Agent, AI_Governance_Policy_Book.</p>
+    </div>
+
+    <div class="card">
+      <span class="rag r-red">Red</span>
+      <h3>Integration &amp; Connector Health</h3>
+      <p class="body">Two Copilot data connectors are broken and unremediated: ServiceNowTickets2607141032 (flagged 21 August 2026, carried as a compliance risk) and Jira2606051042 (flagged 12 August 2026, carried as a data-integrity risk). On the automation side, the "Cowork Plan Approval" flow has failed repeatedly and one flow — "When agent is added or updated" — was disabled by the platform after consistent failures.</p>
+      <p class="meta"><b>Owner:</b> Corey Gray (remediation) &middot; <b>Raised by:</b> M365 / Power Automate system alerts<br>
+      <b>Blocker:</b> Connector authentication / permissions not yet reviewed</p>
+      <p class="src">Sources: Daily Task Digest, 4 September 2026 (items 3, 4, 7); emails "Your Copilot connection ServiceNowTickets2607141032 needs immediate attention", "Alert! We've disabled one of your flows", "1 of your flow(s) have failed".</p>
+    </div>
+
+    <div class="card">
+      <span class="rag r-amber">Amber</span>
+      <h3>Absolute Technology R400 Infrastructure</h3>
+      <p class="body">The Planner task "Communication Error Communication" in the plan "Absolute Technology R400 Infrastructure" was due 18 August 2026 and was reported 7 days late as of 25 August 2026. The digest still lists its current status as unverified. The team's General channel holds no posted discussion — only the system message from when the team was created on 23 February 2026 — so there is no conversational status to draw on.</p>
+      <p class="meta"><b>Owner:</b> Corey Gray (task assignee)<br>
+      <b>Blocker:</b> Overdue Planner item; no channel activity to confirm progress</p>
+      <p class="src">Sources: email "You have late tasks" (25 August 2026); Daily Task Digest, 6 September 2026 (verification section); Teams — Absolute Technology R400 Infrastructure &gt; General.</p>
+    </div>
+
+    <div class="card">
+      <span class="rag r-grey">No signal</span>
+      <h3>FCS Application Upgrade</h3>
+      <p class="body">The FCS Application Upgrade team exists (created 23 February 2026, four members) but its General channel contains no posted messages, and no email, chat or document in the searched sources reports status, owners or milestones for it. Nothing here is a judgement on the workstream — it is an evidence gap.</p>
+      <p class="meta"><b>Owner:</b> Not identified in available sources<br>
+      <b>Action:</b> Request a written status from the workstream lead</p>
+      <p class="src">Source: Teams — FCS Application Upgrade &gt; General (system event only).</p>
+    </div>
+
+    <div class="card">
+      <span class="rag r-amber">Amber</span>
+      <h3>AI Agent Central (Governance CoE)</h3>
+      <p class="body">The deployment platform is documented — a Power Platform environment with Dataverse, a System Administrator role, and a Teams CoE structure — and the AI Agent Central v3 release is live with an employee AI Hub and Microsoft Agent 365 integration. The five readiness pillars (Business &amp; AI Strategy, Technology &amp; Data, Organizational Readiness, Security &amp; Governance) exist as templates, which suggests assessment work is drafted rather than closed out.</p>
+      <p class="meta"><b>Contributors:</b> Corey Gray, Bojan Buhac, Sandee Hjorth<br>
+      <b>Watch:</b> Pillar templates not yet evidenced as completed assessments</p>
+      <p class="src">Sources: AI Agent Central - Deployment Guide; index (AI Agent Central v3 release page); Pillar1–Pillar5 readiness templates; The Agent Readiness Framework - Pillars &amp; Practices.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Milestone timeline</h2>
+  <div class="timeline">
+
+    <div class="ms late">
+      <div class="d">19 JUN 2026 &middot; MISSED</div>
+      <div class="t">File finalisation due to Adil Eli</div>
+      <div class="n">"Can you finalize the file and send it over by end of day today?" — still open in both email and Teams. <span class="src">Daily Task Digest, 6 Sep 2026, item 2.</span></div>
+    </div>
+
+    <div class="ms late">
+      <div class="d">25 JUN 2026 &middot; MISSED</div>
+      <div class="t">Required update completed and confirmed</div>
+      <div class="n">"Please complete the update and confirm once done by 25 June 2026." Recurring in digests through August; unresolved. <span class="src">Daily Task Digest, 6 Sep 2026, item 1.</span></div>
+    </div>
+
+    <div class="ms late">
+      <div class="d">18 AUG 2026 &middot; MISSED</div>
+      <div class="t">Planner task "Communication Error Communication" — R400 Infrastructure</div>
+      <div class="n">Reported 7 days late on 25 August 2026. <span class="src">Email "You have late tasks".</span></div>
+    </div>
+
+    <div class="ms done">
+      <div class="d">26 AUG 2026 &middot; EXTERNAL DEADLINE PASSED</div>
+      <div class="t">Azure OpenAI Assistants API retirement</div>
+      <div class="n">Transition to Microsoft Foundry Agent Service required by this date. Any agent workload still on the Assistants API is now unsupported. <span class="src">Retirement notice email (19 Aug 2026), corroborated by Microsoft Learn.</span></div>
+    </div>
+
+    <div class="ms next">
+      <div class="d">SEP 2026 &middot; IN FLIGHT</div>
+      <div class="t">Connector remediation — ServiceNow and Jira</div>
+      <div class="n">Both connectors flagged in August remain open at the 6 September digest, carrying compliance and data-integrity risk. <span class="src">Daily Task Digest, 6 Sep 2026, items 3–4.</span></div>
+    </div>
+
+    <div class="ms next">
+      <div class="d">SEP 2026 &middot; NEXT DECISION GATE</div>
+      <div class="t">ERP vendor award — budget approval, legal review, contract generation</div>
+      <div class="n">Recommendation stands at Zava Trading (top choice) with Contoso Supplies Ltd as runner-up; award cannot close while the SOW template is missing. <span class="src">Executive_Procurement_Brief_ERP_Integration_2026, sections 4–5.</span></div>
+    </div>
+
+    <div class="ms">
+      <div class="d">3 DEC 2026 &middot; EXTERNAL</div>
+      <div class="t">Atlassian usage-based pricing takes effect</div>
+      <div class="n">Announced 1 September 2026; changes the cost basis for AI, automation and Bitbucket usage across cloud products — relevant to the Jira-based ZAG governance backlog. <span class="src">Atlassian company-news blog and independent partner analyses.</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Risk register</h2>
+  <table>
+    <tr>
+      <th style="width:26%">Risk</th><th style="width:14%">Workstream</th><th style="width:12%">Owner</th>
+      <th style="width:9%">Severity</th><th>Evidence &amp; mitigation</th>
+    </tr>
+    <tr>
+      <td>ServiceNow connector failure — compliance exposure</td><td>Integration health</td><td>Corey Gray</td>
+      <td><span class="rag r-red">High</span></td>
+      <td>Flagged 21 Aug 2026 and still open: "Please review the connection status in the Microsoft 365 Admin Portal." Mitigation: repair ServiceNowTickets2607141032 via M365 Admin Portal &rarr; Microsoft Search &rarr; Connectors.</td>
+    </tr>
+    <tr>
+      <td>Jira connector failure — stale governance data</td><td>Integration health</td><td>Corey Gray</td>
+      <td><span class="rag r-red">High</span></td>
+      <td>Flagged 12 Aug 2026: "Resolve this issue to ensure your data stays up to date." Mitigation: re-authorise Jira2606051042 (authentication/permissions review).</td>
+    </tr>
+    <tr>
+      <td>ERP procurement cannot close — SOW template missing</td><td>ERP</td><td>Corey Gray + Executive Sponsor</td>
+      <td><span class="rag r-amber">Medium</span></td>
+      <td>Compliance score recorded as Partial: "RFP compliant, SOW pending". Mitigation: upload the SOW template against the Pierre Fabre contract templates before contract generation.</td>
+    </tr>
+    <tr>
+      <td>No current EcoVadis / CreditSafe ratings for shortlisted vendors</td><td>ERP</td><td>Procurement Team</td>
+      <td><span class="rag r-amber">Medium</span></td>
+      <td>Section 1 of the brief records that no ratings were found and a compliance update is required. Also note Zava Trading's "regulatory coverage not fully described" risk entry. Mitigation: obtain ratings before award.</td>
+    </tr>
+    <tr>
+      <td>S2P agent status unanswered since April</td><td>S2P / governance</td><td>Corey Gray</td>
+      <td><span class="rag r-red">High</span></td>
+      <td>Request from Adil Eli dated 22 Apr 2026 still logged as awaiting reply on 6 Sep 2026 — a stakeholder-confidence risk. Mitigation: issue a status note covering progress, blockers and next milestones.</td>
+    </tr>
+    <tr>
+      <td>ZAG-5 compliance criteria overdue; ZAG-6 unassigned</td><td>AI governance</td><td>Corey Gray</td>
+      <td><span class="rag r-amber">Medium</span></td>
+      <td>"ZAG-5: Draft compliance criteria for agent behavior" reported overdue; ZAG-6 "Set Up Agent Registration &amp; Verification" shown as unassigned work. Mitigation: prioritise ZAG-5, assign ZAG-6.</td>
+    </tr>
+    <tr>
+      <td>Automation instability — approval flow disabled</td><td>Integration health</td><td>Corey Gray</td>
+      <td><span class="rag r-amber">Medium</span></td>
+      <td>"It's been failing every time we try to run it so we turned it off" (flow "When agent is added or updated"); the Cowork Plan Approval flow also reported failures. Mitigation: review failure logs and re-enable.</td>
+    </tr>
+    <tr>
+      <td>Agent workloads on a retired API surface</td><td>AI platform</td><td>Not identified</td>
+      <td><span class="rag r-amber">Medium</span></td>
+      <td>Azure OpenAI Assistants APIs required transition to Microsoft Foundry Agent Service by 26 Aug 2026; that date has passed. Mitigation: confirm no remaining dependency, migrate to Foundry Agent Service or the Responses API.</td>
+    </tr>
+    <tr>
+      <td>No reportable status for FCS Application Upgrade</td><td>FCS</td><td>Unassigned</td>
+      <td><span class="rag r-grey">Watch</span></td>
+      <td>No messages, mail or documents found for this workstream. Mitigation: nominate a reporting owner and establish a written status cadence.</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>External signals — vendor roadmaps &amp; market context</h2>
+
+  <div class="sig">
+    <h4>Azure OpenAI Assistants API retired 26 August 2026</h4>
+    <p>Microsoft's guidance is that applications relying on the Assistants API had to be migrated before 26 August 2026, after which it is no longer available; the supported replacements are the Microsoft Foundry Agent Service and the OpenAI Responses API. Foundry Agent Service (classic) carries its own, later retirement date. <em>Programme relevance:</em> directly affects any S2P or AI Agent Central workload built on the older surface.</p>
+    <p class="src"><a href="https://learn.microsoft.com/en-us/answers/questions/5790094/will-azure-openai-assistants-api-specifically-be-d">Microsoft Learn Q&amp;A — Assistants API retirement</a> &middot; <a href="https://learn.microsoft.com/en-us/answers/questions/5934023/will-azure-ai-agents-sdk-foundry-agent-service-cla">Microsoft Learn Q&amp;A — Foundry Agent Service (classic) timeline</a></p>
+  </div>
+
+  <div class="sig">
+    <h4>Atlassian usage-based pricing — announced 1 September 2026, effective 3 December 2026</h4>
+    <p>Atlassian is expanding usage-based pricing across more cloud products, with actual usage of AI capabilities, automation and Bitbucket features priced from 3 December 2026; the vendor frames it as added visibility and control over spend. <em>Programme relevance:</em> the ZAG governance backlog runs in Jira, so automation and AI usage in that workflow becomes a budget line.</p>
+    <p class="src"><a href="https://www.atlassian.com/blog/company-news/expanded-usage-based-pricing">Atlassian company news</a> &middot; <a href="https://www.praecipio.com/resources/articles/atlassian-pricing-changes-usage-based-pricing-september-2026">Praecipio analysis</a> &middot; <a href="https://demicon.com/en/insights/atlassian-pricing-announcement-2026-usage-based-pricing">Demicon analysis</a></p>
+  </div>
+
+  <div class="sig">
+    <h4>ServiceNow opens its platform to third-party AI agents (Knowledge 2026)</h4>
+    <p>At Knowledge 2026 ServiceNow announced Action Fabric, opening the ServiceNow AI Platform and its system of action to any AI agent regardless of where it was built, alongside AI Control Tower and related governance capability. <em>Programme relevance:</em> shapes how the ServiceNow connector and future agent integrations should be architected once remediated.</p>
+    <p class="src"><a href="https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-opens-its-full-system-of-action-to-every-AI-Agent-in-the-enterprise/">ServiceNow newsroom</a> &middot; <a href="https://www.servicenow.com/platform/latest-release.html">ServiceNow latest release</a></p>
+  </div>
+
+  <div class="sig">
+    <h4>SAP 2026 cloud roadmap — phased releases</h4>
+    <p>SAP's 2026 technology roadmap signals an accelerated shift to cloud, with product releases organised into phases across the year; SAP publishes release timing through Road Map Explorer and the S/4HANA Cloud Public Edition release pages. <em>Programme relevance:</em> the ERP procurement draws historical data from ARIBA/SAP, so SAP release phasing is a scheduling input for the integration workstream.</p>
+    <p class="src"><a href="https://roadmaps.sap.com/">SAP Road Map Explorer</a> &middot; <a href="https://pages.community.sap.com/topics/s4hana-cloud/product-releases">SAP S/4HANA Cloud Public Edition product releases</a></p>
+  </div>
+
+  <div class="sig">
+    <h4>Databricks account activated, 3 September 2026</h4>
+    <p>A Databricks account was activated for this tenant on 3 September 2026. It is not yet referenced in any programme status, plan or risk item. <em>Programme relevance:</em> a new data platform dependency that should be brought into scope and governance explicitly rather than adopted informally.</p>
+    <p class="src">Source: email "Welcome to Databricks" (3 September 2026) — internal signal, no external corroboration sought.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Evidence gaps</h2>
+  <div class="gap">
+    Three things this dashboard could not establish from the available sources, and should not be read as green:
+    <ul style="margin:8px 0 0;padding-left:20px">
+      <li><b>No meeting transcripts were available.</b> A transcript search across 1 January – 7 September 2026 returned none, and no calendar events were found between 24 August and 10 October 2026, so no meeting-derived decisions or actions are reflected here.</li>
+      <li><b>Programme Teams channels are silent.</b> The General channels for Absolute Technology R400 Infrastructure and FCS Application Upgrade contain only team-creation system events; the AI Agent Central Discussion channel holds four system events and no substantive posts.</li>
+      <li><b>Status for FCS Application Upgrade is entirely absent</b> — no owner, milestone or blocker could be sourced.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  Generated 7 September 2026 from Microsoft 365 signals (Outlook, Teams, SharePoint/OneDrive) and public vendor sources. Internal items cite the email, digest, document or channel they came from; external items link to the published source. Figures are reproduced as reported — none are estimated.
+</footer>
+
+</div>
+</body>
+</html>

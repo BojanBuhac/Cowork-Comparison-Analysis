@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology Programme Status Dashboard — Contoso S2P &amp; Cloud ERP</title>
+<style>
+:root{
+  --bg:#f4f6fa; --card:#ffffff; --ink:#16202e; --muted:#5d6b7f; --line:#e2e7ef;
+  --green:#1a7f4f; --amber:#b8790a; --red:#c0392b; --blue:#1f4e9c;
+  --greenbg:#e8f6ee; --amberbg:#fdf3e0; --redbg:#fdeceb; --bluebg:#eaf1fb;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+header.top{background:linear-gradient(120deg,#12294d,#1f4e9c);color:#fff;border-radius:14px;padding:26px 28px}
+header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+header.top p{margin:0;opacity:.9;font-size:14px}
+.meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:4px 10px;border-radius:999px;font-size:12px}
+h2{font-size:18px;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(20,32,50,.06)}
+.card h3{margin:0 0 4px;font-size:15px}
+.owner{font-size:12px;color:var(--muted);margin:0 0 10px}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:10px}
+.g{background:var(--greenbg);color:var(--green)} .a{background:var(--amberbg);color:var(--amber)}
+.r{background:var(--redbg);color:var(--red)} .b{background:var(--bluebg);color:var(--blue)}
+.card p.body{margin:0 0 10px;font-size:13.5px}
+.src{font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin:0}
+ol.timeline{list-style:none;margin:0;padding:0 0 0 26px;border-left:3px solid var(--line)}
+ol.timeline li{position:relative;padding:0 0 20px 18px}
+ol.timeline li::before{content:"";position:absolute;left:-32px;top:3px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+ol.timeline li.done::before{border-color:var(--green);background:var(--green)}
+ol.timeline li.late::before{border-color:var(--red);background:var(--red)}
+ol.timeline li.next::before{border-color:var(--amber)}
+.date{font-size:12px;color:var(--muted);font-weight:600}
+.tl-title{font-weight:600;font-size:14.5px}
+.tl-note{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13.5px}
+th{background:#eef2f8;text-align:left;padding:11px 12px;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+td{padding:11px 12px;border-top:1px solid var(--line);vertical-align:top}
+td.sev-high{font-weight:700;color:var(--red)} td.sev-med{font-weight:700;color:var(--amber)} td.sev-low{font-weight:700;color:var(--green)}
+.ext{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.ext .card a{color:var(--blue);font-size:12px;word-break:break-word}
+footer{margin-top:36px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>Technology Programme Status Dashboard</h1>
+  <p>Contoso Source-to-Pay (S2P) Agentic Platform, Cloud ERP Procurement &amp; AI Governance</p>
+  <div class="meta">
+    <span>Prepared for: Corey Gray</span>
+    <span>As at: 7 September 2026</span>
+    <span>Internal sources: Outlook · Teams · SharePoint</span>
+    <span>External sources: Web search</span>
+  </div>
+</header>
+
+<h2>Programme Health</h2>
+<div class="grid">
+
+  <div class="card">
+    <span class="pill r">At risk</span>
+    <h3>S2P Agentic Platform</h3>
+    <p class="owner">Owner: Corey Gray · Requester: Adil Eli</p>
+    <p class="body">A status update on the S2P agent has been outstanding since <strong>22 April 2026</strong> — logged as “awaiting your reply” in both Teams and the email digests. Two further deliverables for the same requester (a required update due 25 Jun and a file due 19 Jun) remain overdue. No delivery blocker has been recorded; the blocker is response and sign-off latency.</p>
+    <p class="src">Source: “Daily Task Digest – Sunday, September 6, 2026” (Outlook, items 1, 2 &amp; 5)</p>
+  </div>
+
+  <div class="card">
+    <span class="pill a">On track — decision pending</span>
+    <h3>Cloud ERP Procurement (RFP-2026-001)</h3>
+    <p class="owner">Owner: Procurement Team (Corey Gray) + Executive Sponsor</p>
+    <p class="body">The RFP documentation package is complete and distributed. Three complete proposals were received and scored — <strong>ERPMax Solutions</strong>, <strong>IntegraPro Systems</strong> and <strong>CloudFirst ERP</strong> — evaluated on technical capability (40%) plus commercial criteria. Outstanding: stakeholder briefings, budget sign-off and vendor notifications.</p>
+    <p class="src">Sources: Contoso S2P Teams chat, “Comprehensive Vendor Offer Analysis – Cloud ERP Software Procurement”; proposal workbooks RFP-2026-001_response1_ERPMax-Solutions.xlsx, RFP-2026-001_response2_IntegraPro-Systems.xlsx, RFP-2026-001_response3_CloudFirst-ERP.xlsx (SharePoint › Sales and Marketing › Offers)</p>
+  </div>
+
+  <div class="card">
+    <span class="pill a">At risk</span>
+    <h3>AI / Agent Governance (ZAVA — ZAG backlog)</h3>
+    <p class="owner">Owner: Corey Gray (Jira assignee)</p>
+    <p class="body">Work items ZAG-1 to ZAG-5 are assigned and active. <strong>ZAG-5 (draft compliance criteria for agent behaviour) is overdue</strong>; ZAG-4 covers governance scope. ZAG-6 (Agent Registration &amp; Verification) is still unassigned in the ZAVA AI Governance space.</p>
+    <p class="src">Sources: “Daily Task Digest – Sunday, September 6, 2026” (item 7); Jira weekly update emails, 26 Aug and 2 Sep 2026</p>
+  </div>
+
+  <div class="card">
+    <span class="pill r">Off track</span>
+    <h3>Integration &amp; Automation Layer</h3>
+    <p class="owner">Owner: Corey Gray / M365 platform admin</p>
+    <p class="body">Three concurrent failures: the <strong>ServiceNow connector</strong> (flagged 21 Aug, compliance risk), the <strong>Jira connector</strong> (flagged 12 Aug, data-integrity risk), and Power Automate flows — the “When agent is added or updated” flow was <strong>auto-disabled on 24 Aug</strong> after consistent failure, and the Cowork Plan Approval flow has also failed.</p>
+    <p class="src">Sources: Daily Task Digest 6 Sep (items 3, 4 &amp; 9); “Alert! We've disabled one of your flows” (24 Aug 2026); “1 of your flow(s) have failed” (31 Aug 2026)</p>
+  </div>
+
+  <div class="card">
+    <span class="pill b">Planning</span>
+    <h3>Enterprise AI/Agentic Roadmap</h3>
+    <p class="owner">Owner: Roadmap Project Lead + Stakeholder Engagement, Business Analysis and Metrics &amp; Analytics teams</p>
+    <p class="body">Roadmap workstream is in definition: identifying AI/agentic opportunities across business units, defining milestones and deliverables (matrix for leadership and project teams), establishing metrics/KPI linkage, and a leadership review-and-finalise step.</p>
+    <p class="src">Sources: Planner/Loop pages “Identify AI/agentic opportunities across business units”, “Define roadmap milestones and deliverables”, “Establish metrics and KPI linkage for roadmap”, “Review and finalize roadmap with leadership” (SharePoint › Sales and Marketing)</p>
+  </div>
+
+  <div class="card">
+    <span class="pill a">Watch</span>
+    <h3>Delivery Load</h3>
+    <p class="owner">Owner: Corey Gray</p>
+    <p class="body"><strong>11 open tasks</strong> at the latest reporting point — 5 high, 4 medium, 2 low — and <strong>nothing is blocked on other people</strong>. Every open item requires action from the programme owner, which is itself the single largest throughput constraint.</p>
+    <p class="src">Source: “Daily Task Digest – Sunday, September 6, 2026”, Executive Summary</p>
+  </div>
+
+</div>
+
+<h2>Milestone Timeline</h2>
+<ol class="timeline">
+  <li class="done">
+    <div class="date">25–30 January 2026</div>
+    <div class="tl-title">Vendor proposals received — RFP-2026-001</div>
+    <div class="tl-note">ERPMax Solutions (25 Jan, 90-day validity), IntegraPro Systems (28 Jan, 60-day validity), CloudFirst ERP (30 Jan, 90-day validity). Source: proposal workbooks, SharePoint › Offers.</div>
+  </li>
+  <li class="done">
+    <div class="date">February 2026</div>
+    <div class="tl-title">RFP package complete and vendor offer analysis published</div>
+    <div class="tl-note">Decision-ready comparative analysis posted to the Contoso S2P chat, scored on technical capability (40%) and commercial criteria.</div>
+  </li>
+  <li class="late">
+    <div class="date">19 &amp; 25 June 2026</div>
+    <div class="tl-title">Deliverables to Adil Eli — MISSED</div>
+    <div class="tl-note">“Finalize the file and send it over by end of day” (19 Jun) and “complete the update and confirm once done” (25 Jun). Both still open as at 6 Sep 2026.</div>
+  </li>
+  <li class="late">
+    <div class="date">12 &amp; 21 August 2026</div>
+    <div class="tl-title">Connector health incidents raised — unresolved</div>
+    <div class="tl-note">Jira connector (12 Aug, data integrity) and ServiceNow connector (21 Aug, compliance). Both remain flagged for remediation.</div>
+  </li>
+  <li class="late">
+    <div class="date">18 August 2026</div>
+    <div class="tl-title">Planner task “Communication Error Communication” due — late</div>
+    <div class="tl-note">In the Absolute Technology R400 Infrastructure plan; reported 7 days late on 25 Aug 2026.</div>
+  </li>
+  <li class="late">
+    <div class="date">24 August 2026</div>
+    <div class="tl-title">“When agent is added or updated” flow auto-disabled</div>
+    <div class="tl-note">Power Automate turned the flow off after repeated failures — agent registration updates are not propagating until it is repaired.</div>
+  </li>
+  <li class="next">
+    <div class="date">Next — immediate (September 2026)</div>
+    <div class="tl-title">Clear the top-5 critical queue</div>
+    <div class="tl-note">S2P status reply to Adil Eli; two overdue deliverables; ServiceNow and Jira connector remediation. Source: Daily Task Digest 6 Sep, “Top 5 Items Requiring Immediate Attention”.</div>
+  </li>
+  <li class="next">
+    <div class="date">Next — September / October 2026</div>
+    <div class="tl-title">ERP award gate: stakeholder briefing, budget sign-off, vendor notification</div>
+    <div class="tl-note">An executive-level budget decision for the Contoso S2P project is outstanding and co-owned by Corey Gray. Note: the shortest proposal validity (IntegraPro, 60 days from 28 Jan) has lapsed — re-confirmation of pricing will be required before award.</div>
+  </li>
+  <li class="next">
+    <div class="date">Next — Q4 2026</div>
+    <div class="tl-title">Governance and roadmap sign-off</div>
+    <div class="tl-note">Close ZAG-5 compliance criteria, assign ZAG-6 agent registration &amp; verification, then take the milestone/KPI roadmap to leadership review.</div>
+  </li>
+</ol>
+
+<h2>Risk &amp; Blocker Register</h2>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Risk / blocker</th><th>Impact</th><th>Severity</th><th>Owner</th><th>Mitigation</th><th>Source</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>R1</td>
+      <td>S2P agent status update outstanding since 22 Apr 2026</td>
+      <td>Sponsor visibility lost; decisions stall upstream of delivery</td>
+      <td class="sev-high">High</td>
+      <td>Corey Gray</td>
+      <td>Reply to Adil Eli with current status and a dated recovery plan</td>
+      <td>Daily Task Digest, 6 Sep 2026 (item 5)</td>
+    </tr>
+    <tr>
+      <td>R2</td>
+      <td>ServiceNow connector fault (flagged 21 Aug 2026)</td>
+      <td>Compliance risk — connection health unverified</td>
+      <td class="sev-high">High</td>
+      <td>Corey Gray / M365 admin</td>
+      <td>Review connection status in the M365 Admin Portal and remediate</td>
+      <td>Daily Task Digest, 6 Sep 2026 (item 3); M365 system alert</td>
+    </tr>
+    <tr>
+      <td>R3</td>
+      <td>Jira connector fault (flagged 12 Aug 2026)</td>
+      <td>Data-integrity risk — programme data going stale</td>
+      <td class="sev-high">High</td>
+      <td>Corey Gray</td>
+      <td>Resolve connector settings to restore data sync</td>
+      <td>Daily Task Digest, 6 Sep 2026 (item 4)</td>
+    </tr>
+    <tr>
+      <td>R4</td>
+      <td>Two deliverables to Adil Eli overdue since June 2026</td>
+      <td>Erodes stakeholder confidence; downstream work waiting</td>
+      <td class="sev-high">High</td>
+      <td>Corey Gray</td>
+      <td>Finalise and send the file; complete the update and confirm</td>
+      <td>Daily Task Digest, 6 Sep 2026 (items 1 &amp; 2)</td>
+    </tr>
+    <tr>
+      <td>R5</td>
+      <td>ZAG-5 compliance criteria overdue; ZAG-6 unassigned</td>
+      <td>Agent governance cannot be certified before scale-up</td>
+      <td class="sev-med">Medium</td>
+      <td>Corey Gray</td>
+      <td>Prioritise ZAG-5; assign an owner to ZAG-6</td>
+      <td>Daily Task Digest, 6 Sep 2026 (item 7); Jira weekly update, 2 Sep 2026</td>
+    </tr>
+    <tr>
+      <td>R6</td>
+      <td>ERP budget decision not yet taken</td>
+      <td>Award slips; proposal validity windows lapse (IntegraPro's 60 days already expired)</td>
+      <td class="sev-med">Medium</td>
+      <td>Corey Gray + Executive Sponsor</td>
+      <td>Convene the budget decision; re-confirm vendor pricing before award</td>
+      <td>Daily Task Digest, 20 Aug 2026 (“Budget Decision – Contoso S2P Project”); proposal workbooks</td>
+    </tr>
+    <tr>
+      <td>R7</td>
+      <td>Power Automate flows failing / disabled</td>
+      <td>Agent registration updates and plan approvals not processing</td>
+      <td class="sev-med">Medium</td>
+      <td>Corey Gray</td>
+      <td>Review failure logs and re-enable the “When agent is added or updated” flow</td>
+      <td>“Alert! We've disabled one of your flows”, 24 Aug 2026; Daily Task Digest item 9</td>
+    </tr>
+    <tr>
+      <td>R8</td>
+      <td>Single-owner concentration — 11 open items, none blocked on others</td>
+      <td>All critical-path items funnel through one person</td>
+      <td class="sev-med">Medium</td>
+      <td>Corey Gray / Daichi Maruyama</td>
+      <td>Delegate the connector and Power Automate remediation to platform admin</td>
+      <td>Daily Task Digest, 6 Sep 2026, Executive Summary and “Waiting for Others”</td>
+    </tr>
+    <tr>
+      <td>R9</td>
+      <td>Planner task “Communication Error Communication” late</td>
+      <td>Infrastructure plan (Absolute Technology R400) slipping</td>
+      <td class="sev-low">Low</td>
+      <td>Corey Gray</td>
+      <td>Verify current status in Planner and re-baseline the due date</td>
+      <td>“You have late tasks”, 25 Aug 2026</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>External Signals — Vendor &amp; Market Context</h2>
+<div class="ext">
+
+  <div class="card">
+    <span class="pill b">Market benchmark</span>
+    <h3>Agent embedding is becoming table stakes</h3>
+    <p class="body">Gartner projects that <strong>40% of enterprise applications will embed task-specific AI agents by the end of 2026</strong>, up from under 5% at the start of 2025 — a useful benchmark for how aggressively the ERP award should weight agentic capability.</p>
+    <p class="src">PlanAxion, “AI Agents in ERP Systems: What Changes in 2026”<br>
+    <a href="https://www.planaxion.com/en-ca/articles/ai-agents-erp-2026">planaxion.com/en-ca/articles/ai-agents-erp-2026</a></p>
+  </div>
+
+  <div class="card">
+    <span class="pill b">Vendor roadmap</span>
+    <h3>Microsoft 2026 Release Wave 1</h3>
+    <p class="body">Microsoft published its 2026 release wave 1 plans for Dynamics 365, Power Platform and Copilot Studio (18 March 2026), centred on AI agents and automation — directly relevant to the Power Platform layer currently carrying the failing flows.</p>
+    <p class="src">Microsoft Dynamics 365 Blog<br>
+    <a href="https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/03/18/2026-release-wave-1-plans-for-microsoft-dynamics-365-microsoft-power-platform-and-copilot-studio-offerings/">microsoft.com — 2026 release wave 1 plans</a></p>
+  </div>
+
+  <div class="card">
+    <span class="pill b">Competitive landscape</span>
+    <h3>ERP agent architectures are diverging</h3>
+    <p class="body">Reporting on the ERP agent market describes SAP, Oracle and Microsoft racing to embed autonomous agents into the core ERP layer with materially different architectures — SAP Joule, Oracle Fusion AI Agents and Copilot for Dynamics 365 — which matters for lock-in and integration effort in the RFP scoring.</p>
+    <p class="src">AgentMarketCap, “The $35B ERP Agent War” (11 April 2026)<br>
+    <a href="https://agentmarketcap.ai/blog/2026/04/11/erp-agent-war-sap-joule-oracle-microsoft-dynamics-2026">agentmarketcap.ai — ERP agent war</a></p>
+  </div>
+
+  <div class="card">
+    <span class="pill b">Vendor moves</span>
+    <h3>Consolidation and volume releases</h3>
+    <p class="body">Coverage notes SAP merging Joule with Microsoft Copilot and Oracle shipping 22 agent applications in a single wave — a signal that shortlisted mid-market ERP vendors should be tested on their agent roadmap depth, not just current functionality.</p>
+    <p class="src">PlanAxion, “AI Agents in ERP Systems: What Changes in 2026”; erpimplementation.eu, “Agentic AI ERP 2026”<br>
+    <a href="https://www.erpimplementation.eu/en/agentic-ai-erp-comparison-sap-joule-sage-copilot-odoo-microsoft-2026/">erpimplementation.eu — agentic AI ERP comparison</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Sourcing note.</strong> All internal status, ownership, blocker and milestone data on this page is drawn from Corey Gray's Microsoft 365 content — the Daily Task Digest emails (July–September 2026), Power Automate and Planner system notifications, Jira weekly update emails, the Contoso S2P Teams chat, and SharePoint files in Sales and Marketing › Offers. External signals are drawn from public web sources, each linked in that section. No meeting transcripts were available for the reporting window, so no meeting-derived items are included. Where a date or owner is not recorded in the source material, it has been left out rather than estimated.
+</footer>
+
+</div>
+</body>
+</html>

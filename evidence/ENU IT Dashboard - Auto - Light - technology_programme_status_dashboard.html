@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Technology Programme Status Dashboard</title>
+<style>
+:root{
+--bg:#f5f6f8; --surface:#ffffff; --ink:#1c1e21; --muted:#5c6470;
+--line:#dfe3e8; --accent:#2f5bd7;
+--green:#1f8a52; --amber:#b5730c; --red:#c0392b; --grey:#6b7280;
+--green-bg:#e7f5ed; --amber-bg:#fdf3e2; --red-bg:#fbe9e7; --grey-bg:#eef0f3;
+}
+@media (prefers-color-scheme: dark){
+:root{--bg:#16181c;--surface:#1f2228;--ink:#e8eaed;--muted:#a3abb8;--line:#333840;
+--accent:#7aa2ff;--green:#5fd39a;--amber:#f0b458;--red:#f08a7c;--grey:#9aa3af;
+--green-bg:#1c3128;--amber-bg:#33291a;--red-bg:#3a2320;--grey-bg:#282c33;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5;font-size:15px}
+.wrap{max-width:1080px;margin-inline:auto;padding:32px 24px 64px}
+header{border-block-end:3px solid var(--accent);padding-block-end:16px;margin-block-end:28px}
+h1{margin:0 0 6px;font-size:1.9rem;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.9rem}
+h2{font-size:1.15rem;margin:36px 0 14px;padding-block-end:8px;border-block-end:1px solid var(--line)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 4px;font-size:1rem}
+.owner{font-size:.8rem;color:var(--muted);margin-block-end:10px}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;
+letter-spacing:.05em;padding:3px 9px;border-radius:999px}
+.g{background:var(--green-bg);color:var(--green)}
+.a{background:var(--amber-bg);color:var(--amber)}
+.r{background:var(--red-bg);color:var(--red)}
+.n{background:var(--grey-bg);color:var(--grey)}
+.card p{margin:8px 0 0;font-size:.87rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--surface);
+border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.87rem}
+th,td{text-align:start;padding:10px 12px;border-block-end:1px solid var(--line);vertical-align:top}
+th{background:var(--grey-bg);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+tr:last-child td{border-block-end:none}
+ol.timeline{list-style:none;margin:0;padding:0;border-inline-start:2px solid var(--line);
+margin-inline-start:8px}
+ol.timeline li{position:relative;padding:0 0 18px 22px;padding-inline-start:22px}
+ol.timeline li::before{content:"";position:absolute;inset-inline-start:-7px;top:6px;
+width:12px;height:12px;border-radius:50%;background:var(--accent)}
+ol.timeline .when{font-weight:700;font-size:.82rem}
+ol.timeline .what{font-size:.87rem;color:var(--muted)}
+.sig{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+border-radius:8px;padding:12px 14px;margin-block-end:12px}
+.sig .src{font-size:.78rem;color:var(--muted);margin-block-start:6px;word-break:break-word}
+.note{background:var(--grey-bg);border-radius:8px;padding:12px 14px;font-size:.85rem;color:var(--muted)}
+footer{margin-block-start:40px;font-size:.8rem;color:var(--muted);border-block-start:1px solid var(--line);padding-block-start:14px}
+@media print{
+body{background:#fff}.wrap{max-width:none;padding:0}
+.card,table,.sig{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Technology Programme Status Dashboard</h1>
+<div class="sub">Prepared for Corey Gray &middot; Contoso &middot; Reporting date 7 September 2026<br>
+Internal sources: Outlook, Microsoft Teams, SharePoint/OneDrive files &middot; External signals: web search</div>
+</header>
+
+<h2>Programme health</h2>
+<div class="cards">
+
+<div class="card">
+<h3>Contoso S2P / Cloud ERP procurement</h3>
+<div class="owner">Owner: Corey Gray (procurement) with Executive Sponsor</div>
+<span class="pill a">At risk</span>
+<p>Three vendors (ERPMax Solutions, IntegraPro Systems, CloudFirst ERP) submitted complete proposals and a decision-ready offer analysis was posted to the Contoso S2P chat. Award is held by an outstanding executive budget decision; stakeholder briefings and vendor notifications remain open.</p>
+</div>
+
+<div class="card">
+<h3>AI / Agentic governance (ZAVA AI Governance)</h3>
+<div class="owner">Owner: Corey Gray &middot; Team: AI Agent Central</div>
+<span class="pill a">At risk</span>
+<p>Jira items ZAG-1 to ZAG-5 assigned; ZAG-5 (compliance criteria for agent behaviour) is overdue and ZAG-6 (agent registration &amp; verification) is still unassigned as of the 2 Sept Jira weekly update.</p>
+</div>
+
+<div class="card">
+<h3>Enterprise integration &amp; connectors</h3>
+<div class="owner">Owner: Corey Gray &middot; M365 platform</div>
+<span class="pill r">Off track</span>
+<p>ServiceNow connector flagged 21 Aug (compliance risk) and the Jira Copilot connector flagged 12 Aug (data-integrity risk) are both unresolved. A Power Automate flow ("When agent is added or updated") has been auto-disabled after repeated failures.</p>
+</div>
+
+<div class="card">
+<h3>Absolute Technology R400 Infrastructure</h3>
+<div class="owner">Owner: R400 programme team</div>
+<span class="pill a">At risk</span>
+<p>Planner task "Communication Error Communication" was due 18 Aug and reported 7 days late. The team channel carries no substantive status posts, so reporting depth is limited.</p>
+</div>
+
+<div class="card">
+<h3>Roadmap definition (milestones, KPIs, leadership sign-off)</h3>
+<div class="owner">Owner: Roadmap Project Lead (workstream docs authored by Corey Gray)</div>
+<span class="pill n">Planning</span>
+<p>Three workstream documents exist in the Sales and Marketing site: milestone/deliverable matrix, KPI linkage, and leadership review &amp; finalisation. No completion evidence retrieved.</p>
+</div>
+
+<div class="card">
+<h3>FCS Application Upgrade</h3>
+<div class="owner">Owner: not identified in retrieved sources</div>
+<span class="pill n">No data</span>
+<p>The team exists but its channel contains only system events &mdash; no status, blockers, owners or milestones could be retrieved. Treat as unreported, not as green.</p>
+</div>
+
+</div>
+
+<h2>Milestone timeline</h2>
+<ol class="timeline">
+<li><div class="when">28&ndash;30 Jan 2026 &mdash; Complete</div>
+<div class="what">Vendor proposals received for RFP-2026-001 (IntegraPro Systems 28 Jan; CloudFirst ERP 30 Jan).</div></li>
+<li><div class="when">Feb 2026 &mdash; Complete</div>
+<div class="what">Comprehensive vendor offer analysis published to the Contoso S2P chat, scored on technical capability (40%) and commercial criteria.</div></li>
+<li><div class="when">22 Apr 2026 &mdash; Overdue</div>
+<div class="what">S2P agent status update requested by Adil Eli; still awaiting reply.</div></li>
+<li><div class="when">19 &amp; 25 Jun 2026 &mdash; Overdue</div>
+<div class="what">Finalise file to Adil Eli (due EOD 19 Jun) and complete required update with confirmation (due 25 Jun).</div></li>
+<li><div class="when">12 &amp; 21 Aug 2026 &mdash; Open</div>
+<div class="what">Jira and ServiceNow connector remediation flagged; both still unresolved.</div></li>
+<li><div class="when">18 Aug 2026 &mdash; Overdue</div>
+<div class="what">R400 Infrastructure Planner task "Communication Error Communication" passed due date.</div></li>
+<li><div class="when">2 Sep 2026 &mdash; Open</div>
+<div class="what">ZAG-6 Agent Registration &amp; Verification still unassigned in ZAVA AI Governance.</div></li>
+<li><div class="when">Next &mdash; Not yet dated</div>
+<div class="what">Executive budget decision for Contoso S2P, then stakeholder briefing, vendor notification and award. No date found in retrieved sources.</div></li>
+</ol>
+
+<h2>Risks and blockers</h2>
+<table>
+<thead><tr><th>Risk / blocker</th><th>Programme</th><th>Owner</th><th>Severity</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>Executive budget decision outstanding, blocking ERP award</td><td>Contoso S2P</td><td>Corey Gray + Executive Sponsor</td><td><span class="pill r">High</span></td><td>"An executive-level budget decision is required for the Contoso S2P project" &mdash; Daily Task Digest, 20 Aug 2026</td></tr>
+<tr><td>ServiceNow connector unhealthy &mdash; compliance risk</td><td>Integration</td><td>Corey Gray</td><td><span class="pill r">High</span></td><td>Flagged 21 Aug 2026; "Please review the connection status in the Microsoft 365 Admin Portal"</td></tr>
+<tr><td>Jira connector failure &mdash; data-integrity risk to programme reporting</td><td>Integration / ZAVA</td><td>Corey Gray</td><td><span class="pill r">High</span></td><td>Flagged 12 Aug 2026; "Resolve this issue to ensure your data stays up to date"</td></tr>
+<tr><td>ZAG-5 compliance criteria for agent behaviour overdue</td><td>AI governance</td><td>Corey Gray</td><td><span class="pill a">Medium</span></td><td>"ZAG-5: Draft compliance criteria for agent behavior" reported overdue &mdash; Aug/Sep digests</td></tr>
+<tr><td>Stakeholder responses stalled &mdash; three items to Adil Eli open since June or earlier</td><td>S2P</td><td>Corey Gray</td><td><span class="pill a">Medium</span></td><td>Digest, 6 Sep 2026: overdue since 19 Jun and 25 Jun; status reply awaited since 22 Apr</td></tr>
+<tr><td>Approval automation disabled (Cowork Plan Approval / agent-update flow failing)</td><td>Platform</td><td>Corey Gray</td><td><span class="pill a">Medium</span></td><td>"It's been failing every time we try to run it so we turned it off" &mdash; Power Automate, 24 Aug 2026</td></tr>
+<tr><td>R400 Planner action 7 days late</td><td>R400 Infrastructure</td><td>R400 team</td><td><span class="pill a">Medium</span></td><td>Planner late-task notice, 25 Aug 2026</td></tr>
+<tr><td>No status reporting from FCS Application Upgrade channel</td><td>FCS Upgrade</td><td>Unidentified</td><td><span class="pill a">Medium</span></td><td>Channel contains only system events; no owner or milestone evidence found</td></tr>
+</tbody>
+</table>
+
+<h2>External signals (public sources)</h2>
+
+<div class="sig">
+<strong>ERP vendors are converging on agentic AI in 2026 &mdash; relevant to the pending ERP award criteria.</strong>
+Industry coverage notes that every major vendor now leads with embedded AI: SAP with Joule, Microsoft with Copilot and Oracle with AI Agent Studio.
+<div class="src">Source: "AI in ERP Systems 2026: What Works?", ERP Pilot &mdash; https://www.erp-pilot.com/erp/ai-in-erp</div>
+</div>
+
+<div class="sig">
+<strong>Gartner's 2026 ERP Hype Cycle frames three AI-driven innovation themes reshaping enterprise ERP strategy</strong> &mdash; useful input for weighting the technical-capability criteria in the vendor scorecard.
+<div class="src">Source: Gartner, "2026 Gartner ERP Hype Cycle" &mdash; https://www.gartner.com/en/articles/hype-cycle-for-erp</div>
+</div>
+
+<div class="sig">
+<strong>The 2026 ERP market is shifting from AI features to AI that executes</strong>, with agentic AI and autonomous finance among the defining execution themes &mdash; strengthens the case for finishing the agent governance criteria (ZAG-5) before award.
+<div class="src">Source: ERP Today, "AI That Executes: What the 2026 ERP Market Is Building" &mdash; https://erp.today/2026-erp-market-ai-agents-execution/</div>
+</div>
+
+<div class="sig">
+<strong>Adoption benchmark: roughly 31% of enterprises report AI agents running in production</strong>, against a much larger share experimenting &mdash; a production-readiness gap that mirrors Contoso's own unassigned agent-registration work.
+<div class="src">Sources: "Enterprise AI Agent Stats 2026" &mdash; https://paul-okhrem.com/enterprise-ai-agents-statistics-2026/ and Trixly AI &mdash; https://www.trixlyai.com/blogs/enterprise-ai-agent-adoption-in-2026-stats-roi-case-studies</div>
+</div>
+
+<div class="note">
+<strong>Coverage note.</strong> No meeting transcripts were available for the reporting window, and the R400 and FCS Teams channels contained only system events. Programme status above is drawn from Outlook digests, the Contoso S2P Teams chat, Jira and Planner notifications, and SharePoint workstream documents. Items marked "No data" are unreported, not confirmed healthy.
+</div>
+
+<footer>
+Generated 7 September 2026 from Microsoft 365 (Outlook, Teams, SharePoint/OneDrive) and public web sources cited inline.
+</footer>
+</div>
+</body>
+</html>

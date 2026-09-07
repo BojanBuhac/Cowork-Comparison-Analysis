@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contoso Technology Programme — Status Dashboard</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --card:#ffffff; --ink:#16202e; --muted:#5b6b80;
+    --line:#e2e8f2; --green:#1a8f5a; --amber:#c47f0a; --red:#c0392b;
+    --blue:#1f5fa9; --greenbg:#e8f6ef; --amberbg:#fdf3e0; --redbg:#fcebe9; --bluebg:#eaf1fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;font-size:15px}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px}
+  header.top{background:linear-gradient(135deg,#12335c,#1f5fa9);color:#fff;border-radius:14px;padding:26px 28px;margin-bottom:26px}
+  header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:-.3px}
+  header.top p{margin:0;opacity:.9;font-size:14px}
+  .meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-size:13px;opacity:.95}
+  .meta div{background:rgba(255,255,255,.14);padding:6px 12px;border-radius:8px}
+  h2{font-size:19px;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h2 span.sub{font-size:13px;font-weight:400;color:var(--muted);margin-left:10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;
+    box-shadow:0 1px 3px rgba(20,35,60,.05)}
+  .card h3{margin:0 0 4px;font-size:16px}
+  .owner{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.4px;
+    padding:3px 10px;border-radius:20px;text-transform:uppercase}
+  .g{background:var(--greenbg);color:var(--green)} .a{background:var(--amberbg);color:var(--amber)}
+  .r{background:var(--redbg);color:var(--red)} .b{background:var(--bluebg);color:var(--blue)}
+  .card ul{margin:10px 0 0;padding-left:18px;font-size:13.5px}
+  .card li{margin-bottom:5px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:8px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .kpi .n{font-size:26px;font-weight:700;letter-spacing:-.5px}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;font-size:13.5px}
+  th{background:#eef2f8;text-align:left;padding:11px 12px;font-size:12px;text-transform:uppercase;
+    letter-spacing:.5px;color:#3c4d63;border-bottom:1px solid var(--line)}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .timeline{position:relative;margin-left:8px;padding-left:26px;border-left:3px solid #d5dfec}
+  .tl{position:relative;margin-bottom:18px}
+  .tl:before{content:"";position:absolute;left:-34px;top:4px;width:13px;height:13px;border-radius:50%;
+    background:#fff;border:3px solid var(--blue)}
+  .tl.done:before{background:var(--green);border-color:var(--green)}
+  .tl.now:before{background:var(--amber);border-color:var(--amber)}
+  .tl .when{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+  .tl .what{font-size:14.5px;font-weight:600;margin:1px 0 2px}
+  .tl .det{font-size:13px;color:#43536a}
+  .sig{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);
+    border-radius:10px;padding:15px 17px;margin-bottom:13px}
+  .sig h4{margin:0 0 5px;font-size:14.5px}
+  .sig p{margin:0 0 7px;font-size:13.5px;color:#3d4d63}
+  .sig a{font-size:12.5px;color:var(--blue);word-break:break-all}
+  .src{font-size:12px;color:var(--muted);margin-top:9px;font-style:italic}
+  footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .note{background:#fff8e6;border:1px solid #f0dca8;border-radius:10px;padding:13px 16px;font-size:13px;margin-bottom:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>Contoso Technology Programme — Status Dashboard</h1>
+  <p>Cloud ERP procurement · ERP integration services · S2P agentic platform · AI agent governance</p>
+  <div class="meta">
+    <div><strong>Prepared for:</strong> Corey Gray</div>
+    <div><strong>Reporting date:</strong> 7 September 2026</div>
+    <div><strong>Internal sources:</strong> Outlook, Teams, SharePoint/OneDrive</div>
+    <div><strong>External sources:</strong> Web search</div>
+  </div>
+</header>
+
+<div class="note">
+  <strong>Evidence note.</strong> Every internal item below is traced to a named email, Teams message or
+  document. No Teams channel conversations or meeting transcripts were available for the period
+  reviewed — the <em>Absolute Technology R400 Infrastructure</em>, <em>FCS Application Upgrade</em> and
+  <em>AI Agent Central</em> channels contain only system events, the calendar held no events between
+  24 Aug and 30 Sep 2026, and no meeting transcripts were returned. Those gaps are flagged rather than filled.
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="n" style="color:var(--amber)">5</div><div class="l">Active workstreams</div></div>
+  <div class="kpi"><div class="n" style="color:var(--red)">2</div><div class="l">Red — needs decision now</div></div>
+  <div class="kpi"><div class="n" style="color:var(--red)">€390k</div><div class="l">Lowest compliant ERP bid vs €250k budget</div></div>
+  <div class="kpi"><div class="n" style="color:var(--amber)">+56%</div><div class="l">Budget variance on preferred vendor</div></div>
+  <div class="kpi"><div class="n" style="color:var(--amber)">11</div><div class="l">Open tasks (5 high priority)</div></div>
+</div>
+
+<h2>Programme health <span class="sub">status · owner · blockers</span></h2>
+<div class="grid">
+
+  <div class="card">
+    <span class="pill r">Red — decision blocked</span>
+    <h3>Cloud ERP (SaaS) Procurement — RFP-2026-001</h3>
+    <div class="owner">Owner: Corey Gray (Procurement Lead) · Approvers: Finance Director, Legal Counsel, CISO, Executive Sponsor</div>
+    <ul>
+      <li>Evaluation complete: <strong>ERPMax Solutions 86/100</strong> recommended; IntegraPro 73/100 conditional reserve; CloudFirst 58/100 recommended for disqualification.</li>
+      <li><strong>Blocker:</strong> all three bids exceed the €250,000 budget — ERPMax €390k (+56%), IntegraPro €450k (+80%), CloudFirst €290k (+16%).</li>
+      <li><strong>Blocker:</strong> vendor selection, budget-mitigation option and CloudFirst disqualification all still await Corey Gray's confirmation — the analysis closes with an unanswered "YOUR DECISION?".</li>
+      <li>Recommended path: Option D hybrid (phase CRM to Year 2, start at 280 users, negotiate 15–20%) → €250k–€270k.</li>
+    </ul>
+    <div class="src">Source: Teams message from Contoso S2P, "COMPREHENSIVE VENDOR OFFER ANALYSIS – CLOUD ERP SOFTWARE PROCUREMENT", 26 Feb 2026.</div>
+  </div>
+
+  <div class="card">
+    <span class="pill a">Amber — compliance gap</span>
+    <h3>ERP Integration Services Procurement</h3>
+    <div class="owner">Owner: Corey Gray · Status recorded as "Complete" for market analysis</div>
+    <ul>
+      <li>Top choice <strong>Zava Trading</strong> (8/10, €14,500 one-time + €7,150/month); runner-up Contoso Supplies Ltd (7/10, €51,888 net + €925/month); Fabrikam Manufacturing 6/10.</li>
+      <li><strong>Blocker:</strong> "SOW template missing and must be uploaded for full compliance" — compliance score is <em>Partial</em>.</li>
+      <li><strong>Blocker:</strong> "No current EcoVadis or CreditSafe ratings found for vendors; compliance update required."</li>
+      <li>Vendor discrepancies and price/contract inconsistencies flagged in ARIBA/SAP data for review.</li>
+    </ul>
+    <div class="src">Source: Executive_Procurement_Brief_ERP_Integration_2026.docx (OneDrive, Corey Gray) — sections 1–5.</div>
+  </div>
+
+  <div class="card">
+    <span class="pill a">Amber — awaiting update</span>
+    <h3>Zava S2P Agentic Platform</h3>
+    <div class="owner">Owner: Corey Gray · Requester: Adil Eli</div>
+    <ul>
+      <li>Objective on record: increase enterprise-wide adoption of the S2P agentic platform to <strong>80% of business</strong> units.</li>
+      <li><strong>Blocker:</strong> status request from Adil Eli — "What is the status of S2P agent?" — has been awaiting a reply since <strong>22 Apr 2026</strong>.</li>
+      <li>Supporting artefacts exist: governance framework, strategic guidance, platform-based evidence and people-readiness papers.</li>
+    </ul>
+    <div class="src">Sources: Draft roadmap for AI/agentic integration (SharePoint, Sales and Marketing); Daily Task Digest – Sunday, September 6, 2026, item 5.</div>
+  </div>
+
+  <div class="card">
+    <span class="pill a">Amber — item overdue</span>
+    <h3>AI Agent Governance (ZAG workstream)</h3>
+    <div class="owner">Owner: Corey Gray · Tracked in Jira space "ZAVA AI Governance"</div>
+    <ul>
+      <li>ZAG-1 to ZAG-5 assigned to Corey Gray. <strong>ZAG-5 (draft compliance criteria for agent behaviour) is overdue.</strong></li>
+      <li>ZAG-4 — identify scope of governance — active.</li>
+      <li><strong>Blocker:</strong> ZAG-6 "Set Up Agent Registration &amp; Verification" is still unassigned as of the 2 Sep Jira digest.</li>
+      <li>Supporting Power Automate flow "When agent is added or updated" has been <strong>disabled after repeated failures</strong>, removing automated agent registration.</li>
+    </ul>
+    <div class="src">Sources: Jira weekly updates 26 Aug &amp; 2 Sep 2026; Daily Task Digest 6 Sep 2026, item 7; Power Automate alert 24 Aug 2026.</div>
+  </div>
+
+  <div class="card">
+    <span class="pill r">Red — data integrity</span>
+    <h3>Enterprise Data &amp; Connector Integrity</h3>
+    <div class="owner">Owner: Corey Gray · Raised by Microsoft 365 system notifications</div>
+    <ul>
+      <li><strong>ServiceNow connector</strong> (ServiceNowTickets2607141032) flagged 21 Aug 2026 — recorded as a <em>compliance risk</em>, needs admin-portal remediation.</li>
+      <li><strong>Jira connector</strong> flagged 12 Aug 2026 — recorded as a <em>data integrity risk</em>; "Resolve this issue to ensure your data stays up to date."</li>
+      <li>Power Automate: 1–2 flow failures reported per week through late August, including the Cowork Plan Approval flow.</li>
+    </ul>
+    <div class="src">Sources: Daily Task Digest 6 Sep 2026, items 3, 4 and 9; Power Automate failure notices 24 &amp; 31 Aug 2026.</div>
+  </div>
+
+  <div class="card">
+    <span class="pill a">Amber — visibility gap</span>
+    <h3>Absolute Technology R400 Infrastructure</h3>
+    <div class="owner">Owner: unconfirmed — task assigned to Corey Gray in Planner</div>
+    <ul>
+      <li>Planner task "Communication Error Communication" was due 18 Aug 2026 and reported <strong>7 days late</strong> on 25 Aug.</li>
+      <li><strong>Blocker:</strong> no working conversation exists — the R400 Teams channel holds only a membership system event from 23 Feb 2026, so status cannot be verified from Teams.</li>
+      <li>Same gap applies to the FCS Application Upgrade team.</li>
+    </ul>
+    <div class="src">Sources: Planner late-task notice, 25 Aug 2026; Teams channel history for the R400 and FCS teams.</div>
+  </div>
+
+</div>
+
+<h2>Milestone timeline <span class="sub">ERP programme — procurement runway and 24-month delivery plan</span></h2>
+<div class="timeline">
+
+  <div class="tl done">
+    <div class="when">Completed · 26 February 2026</div>
+    <div class="what">Vendor evaluation closed</div>
+    <div class="det">Three complete proposals scored across technical (40%), commercial (25%), risk (20%) and CSR/compliance (15%). ERPMax recommended, CloudFirst recommended for disqualification.</div>
+  </div>
+
+  <div class="tl now">
+    <div class="when">Overdue · gating everything below</div>
+    <div class="what">Executive decision: vendor, budget option, disqualification</div>
+    <div class="det">Three decisions required — approve ERPMax, choose Option D hybrid mitigation, confirm CloudFirst disqualification. Owner: Corey Gray with Executive Sponsor.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Week 1 after decision</div>
+    <div class="what">Vendor notifications issued</div>
+    <div class="det">Selection letter to ERPMax (conditional on budget), non-selection with debrief to IntegraPro, disqualification with reasons to CloudFirst. Owner: Procurement Team (Corey Gray).</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Weeks 1–3</div>
+    <div class="what">Internal alignment and negotiation kick-off</div>
+    <div class="det">Brief Finance Director, Legal, CISO and Compliance; open commercial negotiation targeting €250k–€270k. Owners: Corey Gray + Executive Sponsor; then Procurement Lead + Legal Counsel.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Weeks 3–7</div>
+    <div class="what">Legal review, due diligence and contract finalisation</div>
+    <div class="det">Redlining, ISO 27001 / SOC 2 Type II validation, security and GDPR assessment, final pricing and payment schedule. Owners: Legal, Security, Compliance.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Weeks 8–10</div>
+    <div class="what">Contract execution, SAP/ARIBA update, project initiation</div>
+    <div class="det">Signature and PO, vendor master and contract registration, then kick-off, team mobilisation and first steering committee. Owners: Executive Sponsor, Procurement Operations, Project Sponsor.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery months 1–3</div>
+    <div class="what">Foundation &amp; governance</div>
+    <div class="det">Contract signature, PMO and steering committee, kick-off workshops, requirements validation, architecture and security design, EMEA data centre setup.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery months 4–9</div>
+    <div class="what">Build &amp; configure — Finance and HR</div>
+    <div class="det">GL, AP/AR, multi-currency and EMEA localisation; employee data, payroll, time &amp; attendance, performance; integrations and access controls.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery months 10–15</div>
+    <div class="what">Testing &amp; training — Finance and HR</div>
+    <div class="det">SIT, UAT, performance and security testing, data cleansing, training for 350 users across EMEA. Milestone: UAT sign-off.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery month 18</div>
+    <div class="what">Finance &amp; HR go-live</div>
+    <div class="det">Cutover dry runs, production setup, go-live readiness, then eight weeks of hypercare.</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery months 19–21</div>
+    <div class="what">CRM build &amp; configure</div>
+    <div class="det">Customer data, sales pipeline, marketing automation, service ticketing and integration back to Finance/HR (Option D phasing).</div>
+  </div>
+
+  <div class="tl">
+    <div class="when">Delivery month 24</div>
+    <div class="what">CRM go-live and programme closure</div>
+    <div class="det">CRM testing, training and go-live; stabilisation, knowledge transfer to Contoso IT, closure and lessons learned.</div>
+  </div>
+
+</div>
+
+<h2>Risk register <span class="sub">from internal evidence · owners as recorded</span></h2>
+<table>
+  <thead>
+    <tr><th style="width:22%">Risk</th><th style="width:9%">Severity</th><th style="width:15%">Owner</th><th style="width:34%">Impact &amp; evidence</th><th style="width:20%">Mitigation on record</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ERP budget overrun</td>
+      <td><span class="pill r">High</span></td>
+      <td>Corey Gray + Finance Director</td>
+      <td>Lowest compliant bid is €390k against a €250k budget (+€140k). The budget is 36% below the stated EMEA market range of €350k–€500k for a 350-user Finance/HR/CRM scope, so a budget increase or scope reduction is described as mandatory.</td>
+      <td>Option D hybrid: phased CRM (−€50k), 280 initial users (−€30k), 10–15% negotiated discount (−€40k–€60k).</td>
+    </tr>
+    <tr>
+      <td>Decision paralysis on vendor award</td>
+      <td><span class="pill r">High</span></td>
+      <td>Corey Gray (Procurement Lead)</td>
+      <td>The evaluation was issued on 26 Feb 2026 and still ends with three unanswered approval checkboxes. Every downstream milestone — notifications, negotiation, contract, kick-off — is sequenced from that decision.</td>
+      <td>Confirm the three decisions, then trigger the Week 1 notification pack.</td>
+    </tr>
+    <tr>
+      <td>CloudFirst technical non-compliance</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Procurement / Technical evaluation</td>
+      <td>Batch-only nightly inventory against a real-time requirement, REST API with read-only writes requiring legacy SOAP, automated PO generation roadmap-dependent to Q4 2026, no SLA penalty clauses, SOC 2 Type II missing and ISO 27001 pending.</td>
+      <td>Disqualify immediately — described as non-negotiable.</td>
+    </tr>
+    <tr>
+      <td>IntegraPro roadmap dependency</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Procurement / Legal</td>
+      <td>Supplier portal not available until Q3 2026 and AI-driven insights on roadmap for Q2 2026; 26-month average implementation exceeds the 24-month target; only 3 EMEA references against ERPMax's 12.</td>
+      <td>Hold as reserve only, subject to contractual portal guarantee, ≥25% cost reduction and full SOC 2 report.</td>
+    </tr>
+    <tr>
+      <td>Integration SOW / compliance gap</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Corey Gray</td>
+      <td>The integration-services RFP is compliant but the SOW template is missing, and no EcoVadis or CreditSafe ratings exist for Zava Trading, Contoso Supplies or Fabrikam — leaving vendor risk unrated.</td>
+      <td>Upload SOW template; obtain third-party ratings before award.</td>
+    </tr>
+    <tr>
+      <td>Connector data integrity</td>
+      <td><span class="pill r">High</span></td>
+      <td>Corey Gray</td>
+      <td>ServiceNow connector flagged as a compliance risk (21 Aug) and Jira connector as a data integrity risk (12 Aug); both still open in the 6 Sep digest. Programme reporting drawn from those systems may be stale.</td>
+      <td>Remediate both connectors via the M365 admin portal.</td>
+    </tr>
+    <tr>
+      <td>Agent registration automation offline</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Corey Gray (ZAG-6)</td>
+      <td>The "When agent is added or updated" flow was disabled after consistent failures, and ZAG-6 (agent registration &amp; verification) remains unassigned — governance coverage of new agents is manual.</td>
+      <td>Fix or rebuild the flow; assign ZAG-6.</td>
+    </tr>
+    <tr>
+      <td>Compliance criteria overdue</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Corey Gray (ZAG-5)</td>
+      <td>ZAG-5, drafting compliance criteria for agent behaviour, is reported overdue — the S2P agent scale-up has no signed-off behavioural standard behind it.</td>
+      <td>Prioritise ZAG-5 ahead of other ZAG items.</td>
+    </tr>
+    <tr>
+      <td>Stakeholder communication debt</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Corey Gray → Adil Eli</td>
+      <td>Three requests from Adil Eli are open: an update due 25 Jun, a file due 19 Jun, and the S2P agent status awaited since 22 Apr. Total 11 open tasks, 5 high priority, none blocked on anyone else.</td>
+      <td>Clear the three Adil Eli items with a status and revised ETA.</td>
+    </tr>
+    <tr>
+      <td>Infrastructure programme opacity</td>
+      <td><span class="pill a">Medium</span></td>
+      <td>Unassigned</td>
+      <td>R400 Infrastructure and FCS Application Upgrade have no channel activity, no calendar events in the reporting window and no meeting transcripts — status is unverifiable beyond one late Planner task.</td>
+      <td>Establish a reporting cadence or nominate a named owner.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>External signals <span class="sub">public benchmarks and vendor roadmap context (web search)</span></h2>
+
+<div class="sig">
+  <h4>ERP pricing benchmarks corroborate the budget gap</h4>
+  <p>Independent 2026 pricing research reports that subscription fees account for only about 40–60% of three-year cloud ERP spend, with the balance in implementation, integrations, sandboxes, storage, training and renewal inflation. That structure matches the internal €390k breakdown (implementation €156k, Year 1 licence €136.5k, three-year support €97.5k) and supports the finding that a €250k target was set below market.</p>
+  <a href="https://flectic.com/learn/erp-cost-per-user">flectic.com/learn/erp-cost-per-user</a>
+</div>
+
+<div class="sig">
+  <h4>Per-user and TCO comparison sources for negotiation leverage</h4>
+  <p>Public 2026 comparisons of per-user pricing across 21–25 cloud ERP systems, plus TCO and hidden-cost guides, provide external reference points for the Option D negotiation target of €250k–€270k and for the ~€390/user annual licensing assumption used in the user-count option.</p>
+  <a href="https://www.erpresearch.com/en-us/cloud-erp-per-user-pricing">erpresearch.com/en-us/cloud-erp-per-user-pricing</a><br>
+  <a href="https://www.cleverence.com/articles/business-blogs/erp-costs-2026-pricing-tco-guide-4827/">cleverence.com — ERP costs 2026: pricing models, benchmarks and TCO guide</a>
+</div>
+
+<div class="sig">
+  <h4>Source-to-pay vendor roadmap: agentic procurement is moving to a platform architecture</h4>
+  <p>SAP's 2026 materials describe next-generation Ariba moving to SAP BTP for open APIs and cross-suite data consistency, with Joule copilot and procurement agents positioned as the intelligent-procurement layer. Third-party trackers separate what is generally available from what remains roadmap. This is directly relevant to the Zava S2P agent target of 80% adoption and to the SAP/ARIBA vendor-master and contract-registration steps in weeks 8–9.</p>
+  <a href="https://news.sap.com/2026/03/next-gen-sap-ariba-foundation-for-intelligent-procurement/">news.sap.com — Next-Gen SAP Ariba: foundation for intelligent procurement (March 2026)</a><br>
+  <a href="https://procurementaiagents.com/blog/sap-ariba-ai-updates-2026">procurementaiagents.com — SAP Ariba AI updates 2026: what is GA, what is roadmap</a>
+</div>
+
+<div class="sig">
+  <h4>Agent adoption benchmarks put the 80% target in context</h4>
+  <p>Published 2026 enterprise surveys report production AI-agent deployment in roughly the 31%–54% range depending on the study, against far higher rates of experimentation. An 80% enterprise-wide adoption goal for the S2P agent therefore sits well above the reported market average — reinforcing the need for the overdue ZAG-5 compliance criteria and a working agent-registration process before scaling.</p>
+  <a href="https://www.ampcome.com/post/enterprise-ai-agents-2026-mid-year-report">ampcome.com — Enterprise AI agents 2026 mid-year report</a><br>
+  <a href="https://www.trixlyai.com/blogs/enterprise-ai-agent-adoption-in-2026-stats-roi-case-studies">trixlyai.com — Enterprise AI agent adoption in 2026</a>
+</div>
+
+<div class="sig">
+  <h4>Caveat on external figures</h4>
+  <p>The adoption and pricing figures above come from commercial market-research and vendor-adjacent publications, not audited data, and the two adoption studies disagree with each other. Treat them as directional context for the steering committee rather than as validated benchmarks.</p>
+</div>
+
+<footer>
+  <strong>Internal sources cited:</strong> Teams message from Contoso S2P, "COMPREHENSIVE VENDOR OFFER ANALYSIS – CLOUD ERP SOFTWARE PROCUREMENT" (26 Feb 2026) ·
+  Executive_Procurement_Brief_ERP_Integration_2026.docx ·
+  Draft roadmap for AI/agentic integration (SharePoint) ·
+  📋 Daily Task Digest – Sunday, September 6, 2026 ·
+  Jira weekly updates (26 Aug, 2 Sep 2026) ·
+  Power Automate flow failure and disablement notices (24 Aug, 31 Aug 2026) ·
+  Planner late-task notice (25 Aug 2026) ·
+  Teams channel histories for Absolute Technology R400 Infrastructure, FCS Application Upgrade and AI Agent Central.<br><br>
+  Generated 7 September 2026 for Corey Gray. Milestone weeks are relative to the pending vendor-award decision, as written in the source analysis; delivery months are relative to contract signature.
+</footer>
+
+</div>
+</body>
+</html>
